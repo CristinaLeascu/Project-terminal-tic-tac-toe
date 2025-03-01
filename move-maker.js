@@ -10,15 +10,32 @@
         - and then return false
     Testing your function by calling it with some values. An example board is:
         let board = [
-            ['X', '_', '_'],
-            ['_', 'X', '_'],
-            ['O', 'O', 'X']
+            ['X', '_', '_'], 1,1 / 1,2 / 1,3
+            ['_', 'X', '_'], 2,1 / 2,2 / 2,3
+            ['O', 'O', 'X'], 3,1 / 3,2 / 3,3  
         ];
 */
-function validateMove(move, board) {
-    // Implement this at the end if you have time, otherwise you can help your teammates!
-    return true;
-}
+// [1, 1], 1,3 
+
+
+
+//function validateMove(move, board) {
+//    // we need to access the position on the board with 'move' 
+//    console.log(move)
+//    console.log(move[0], move[1])
+//    const rawNumber = move[0]
+//    const columnNumber = move[1]
+//    console.log(board[rawNumber][columnNumber]) //'X'
+
+
+   
+
+
+   
+ // check if position has free space, which is represented by underscore '_'
+
+
+
 
 /*
     Given 3 parameters:
@@ -31,6 +48,56 @@ function validateMove(move, board) {
             - Update the board with the player's value ('X' or 'O') in the correct position
             - Return true
 */
-export function makeMove(board, move, player) {
-    return false;
+
+function isValidMove(move, board) {
+    const regex = /^[1-3],[1-3]$/;
+    if (!regex.test(move)) {
+        console.log("Try again...");
+        return false;
+    }
+    
+    let [row, col] = move.split(',').map(Number);
+    row -= 1;
+    col -= 1;
+    
+    if (board[row][col] !== '_') {
+        console.log("Try again...");
+        return false;
+    }
+    
+    return true;
 }
+
+export function makeMove(board, move, player) {
+    if (!isValidMove(move, board)) {
+        return false;
+    }
+    
+    let [row, col] = move.split(',').map(Number);
+    row -= 1;
+    col -= 1;
+    
+    board[row][col] = player;
+    return true;
+}
+let board = [
+    ['X', '_', '_'],
+    ['_', 'X', '_'],
+    ['O', 'O', 'X']
+];
+
+
+console.log(isValidMove("1,2", board)); 
+console.log(isValidMove("2,2", board)); 
+console.log(isValidMove("3,3", board)); 
+console.log(isValidMove("0,1", board)); 
+console.log(isValidMove("2-1", board)); 
+
+
+console.log(makeMove(board, "1,2", 'O')); 
+console.log(makeMove(board, "2,2", 'X')); 
+console.log(makeMove(board, "3,3", 'O')); 
+console.log(makeMove(board, "2,1", 'X')); 
+
+
+console.log(board);
