@@ -80,24 +80,3 @@ export function makeMove(board, move, player) {
     board[row][col] = player;
     return true;
 }
-let board = [
-    ['X', '_', '_'],
-    ['_', 'X', '_'],
-    ['O', 'O', 'X']
-];
-
-
-console.log(isValidMove("1,2", board)); 
-console.log(isValidMove("2,2", board)); 
-console.log(isValidMove("3,3", board)); 
-console.log(isValidMove("0,1", board)); 
-console.log(isValidMove("2-1", board)); 
-
-
-console.log(makeMove(board, "1,2", 'O')); 
-console.log(makeMove(board, "2,2", 'X')); 
-console.log(makeMove(board, "3,3", 'O')); 
-console.log(makeMove(board, "2,1", 'X')); 
-
-
-console.log(board);
